@@ -23,7 +23,7 @@ const FergandoHeader = () => {
               <img 
                 src="/lovable-uploads/233b61f8-7947-45c4-9b78-d23b0362de6a.png" 
                 alt="Fergando Logo" 
-                className="h-10 w-auto animate-pulse"
+                className="h-14 w-auto"
               />
             </Link>
           </div>
@@ -46,10 +46,13 @@ const FergandoHeader = () => {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <button className="bg-[#E31C25] text-white px-6 py-2 rounded-full hover:bg-[#C41E20] transition-all duration-300 font-medium flex items-center space-x-2 hover:scale-105 hover:shadow-lg hover:shadow-[#E31C25]/25">
+            <Link 
+              to="/podcast"
+              className="bg-[#E31C25] text-white px-6 py-2 rounded-full hover:bg-[#C41E20] transition-all duration-300 font-medium flex items-center space-x-2 hover:scale-105 hover:shadow-lg hover:shadow-[#E31C25]/25"
+            >
               <Headphones className="h-4 w-4" />
               <span>Listen Now</span>
-            </button>
+            </Link>
             <button className="lg:hidden p-2 text-gray-300 hover:text-white transition-colors">
               <Menu className="h-6 w-6" />
             </button>
