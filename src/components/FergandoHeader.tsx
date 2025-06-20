@@ -23,7 +23,7 @@ const FergandoHeader = () => {
               <img 
                 src="/lovable-uploads/233b61f8-7947-45c4-9b78-d23b0362de6a.png" 
                 alt="Fergando Logo" 
-                className="h-14 w-auto"
+                className="h-16 w-auto"
               />
             </Link>
           </div>
