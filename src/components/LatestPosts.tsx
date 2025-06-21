@@ -46,7 +46,7 @@ const posts = [
 
 const LatestPosts = () => {
   return (
-    <section className="py-16 bg-gradient-to-b from-[#111111] to-[#0A0F29]">
+    <section className="py-16 bg-black">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-white mb-4">Latest Episodes & Posts</h2>
@@ -55,20 +55,20 @@ const LatestPosts = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {posts.map((post) => (
-            <article key={post.id} className="bg-gradient-to-b from-[#1a1a2e] to-[#16213e] rounded-xl border border-gray-800 hover:border-[#E31C25]/50 transition-all duration-300 hover:transform hover:scale-105 group">
-              <div className="aspect-video bg-gradient-to-br from-[#E31C25]/10 to-[#0A0F29]/30 rounded-t-xl flex items-center justify-center border-b border-gray-800">
-                <post.icon className="h-8 w-8 text-[#E31C25] group-hover:scale-110 transition-transform" />
+            <article key={post.id} className="bg-gray-900 rounded-xl border border-gray-800 hover:border-gray-700 transition-all duration-300 hover:transform hover:scale-105 group">
+              <div className="aspect-video bg-gray-800 rounded-t-xl flex items-center justify-center border-b border-gray-800">
+                <post.icon className="h-8 w-8 text-white group-hover:scale-110 transition-transform" />
               </div>
               
               <div className="p-6">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="bg-[#E31C25]/20 text-[#E31C25] px-2 py-1 rounded-full text-xs font-semibold">
+                  <span className="bg-gray-800 text-white px-2 py-1 rounded-full text-xs font-semibold">
                     {post.category}
                   </span>
                   <span className="text-gray-500 text-xs">{post.language}</span>
                 </div>
 
-                <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-[#E31C25] transition-colors">
+                <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-gray-300 transition-colors">
                   {post.title}
                 </h3>
                 
@@ -81,7 +81,7 @@ const LatestPosts = () => {
                     <Calendar className="h-3 w-3" />
                     <span>{post.date}</span>
                   </div>
-                  <span className="text-[#E31C25] font-semibold">{post.type}</span>
+                  <span className="text-white font-semibold">{post.type}</span>
                 </div>
               </div>
             </article>

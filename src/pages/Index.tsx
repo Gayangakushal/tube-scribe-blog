@@ -10,7 +10,7 @@ import FergandoFooter from "@/components/FergandoFooter";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-[#111111] text-white">
+    <div className="min-h-screen bg-black text-white">
       <FergandoHeader />
       <HeroSection />
       <FeaturedContent />
