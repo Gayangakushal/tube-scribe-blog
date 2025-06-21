@@ -1,37 +1,38 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FergandoHeader from "@/components/FergandoHeader";
 import FergandoFooter from "@/components/FergandoFooter";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
-// Sample clothes data - in a real app, this would come from your database
-const sampleClothes = [
-  {
-    id: 1,
-    name: "Classic Black T-Shirt",
-    price: 25.99,
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-    description: "Comfortable cotton t-shirt perfect for everyday wear."
-  },
-  {
-    id: 2,
-    name: "Denim Jacket",
-    price: 79.99,
-    image: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-    description: "Stylish denim jacket for a casual look."
-  },
-  {
-    id: 3,
-    name: "Summer Dress",
-    price: 49.99,
-    image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-    description: "Light and breezy summer dress."
-  }
-];
+interface ClothingItem {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image_url?: string;
+}
 
 const Clothes = () => {
+  const [clothes, setClothes] = useState<ClothingItem[]>([]);
   const whatsappNumber = "+1234567890"; // Replace with actual WhatsApp number
+
+  useEffect(() => {
+    fetchClothes();
+  }, []);
+
+  const fetchClothes = async () => {
+    const { data, error } = await supabase
+      .from("clothes")
+      .select("*")
+      .eq("status", "published")
+      .order("created_at", { ascending: false });
+
+    if (!error && data) {
+      setClothes(data);
+    }
+  };
 
   const handleWhatsAppContact = (itemName: string, price: number) => {
     const message = `Hi! I'm interested in purchasing the ${itemName} for $${price}. Can you provide more details?`;
@@ -53,14 +54,14 @@ const Clothes = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {sampleClothes.map((item) => (
+          {clothes.map((item) => (
             <div 
               key={item.id} 
               className="bg-gray-900 rounded-lg overflow-hidden border border-gray-800 hover:border-gray-700 transition-all duration-300"
             >
               <div className="aspect-square overflow-hidden">
                 <img 
-                  src={item.image} 
+                  src={item.image_url || "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"} 
                   alt={item.name}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
@@ -84,6 +85,12 @@ const Clothes = () => {
             </div>
           ))}
         </div>
+
+        {clothes.length === 0 && (
+          <div className="text-center text-gray-400">
+            <p>No clothing items available yet. Check back soon!</p>
+          </div>
+        )}
       </main>
 
       <FergandoFooter />

@@ -11,6 +11,7 @@ import Videos from "./pages/Videos";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Clothes from "./pages/Clothes";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/clothes" element={<Clothes />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
