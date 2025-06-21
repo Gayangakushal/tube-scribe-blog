@@ -149,8 +149,8 @@ const AdminPodcasts = () => {
       audio_url: podcast.audio_url || "",
       duration: podcast.duration || "",
       episode_number: podcast.episode_number?.toString() || "",
-      language: podcast.language,
-      status: podcast.status
+      language: podcast.language || "English",
+      status: (podcast.status as "draft" | "published") || "draft"
     });
     setShowForm(true);
   };

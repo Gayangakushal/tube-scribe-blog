@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -143,7 +142,7 @@ const AdminClothes = () => {
       description: item.description || "",
       price: item.price.toString(),
       image_url: item.image_url || "",
-      status: item.status
+      status: (item.status as "draft" | "published") || "draft"
     });
     setShowForm(true);
   };

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -139,8 +138,8 @@ const AdminPosts = () => {
       title: post.title,
       description: post.description || "",
       image_url: post.image_url || "",
-      post_type: post.post_type,
-      status: post.status
+      post_type: (post.post_type as "blog" | "video") || "blog",
+      status: (post.status as "draft" | "published") || "draft"
     });
     setShowForm(true);
   };
