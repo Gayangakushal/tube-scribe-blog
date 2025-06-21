@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,13 +10,14 @@ import { Trash2, Edit, Plus } from "lucide-react";
 interface Podcast {
   id: string;
   title: string;
-  description: string;
-  audio_url?: string;
-  duration?: string;
-  episode_number?: number;
-  language: string;
-  status: 'draft' | 'published';
+  description: string | null;
+  audio_url?: string | null;
+  duration?: string | null;
+  episode_number?: number | null;
+  language: string | null;
+  status: string | null;
   created_at: string;
+  updated_at: string;
 }
 
 const AdminPodcasts = () => {

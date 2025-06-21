@@ -11,11 +11,12 @@ import { Trash2, Edit, Plus } from "lucide-react";
 interface ClothingItem {
   id: string;
   name: string;
-  description: string;
+  description: string | null;
   price: number;
-  image_url?: string;
-  status: 'draft' | 'published';
+  image_url?: string | null;
+  status: string | null;
   created_at: string;
+  updated_at: string;
 }
 
 const AdminClothes = () => {

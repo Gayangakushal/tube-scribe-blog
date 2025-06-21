@@ -11,11 +11,14 @@ import { Trash2, Edit, Plus } from "lucide-react";
 interface Post {
   id: string;
   title: string;
-  description: string;
-  image_url?: string;
-  post_type: 'blog' | 'video';
-  status: 'draft' | 'published';
+  description: string | null;
+  image_url?: string | null;
+  post_type: string;
+  status: string | null;
   created_at: string;
+  video_enabled?: boolean | null;
+  video_url?: string | null;
+  updated_at: string;
 }
 
 const AdminPosts = () => {

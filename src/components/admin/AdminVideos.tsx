@@ -11,11 +11,12 @@ import { Trash2, Edit, Plus } from "lucide-react";
 interface Video {
   id: string;
   title: string;
-  description: string;
+  description: string | null;
   youtube_url: string;
-  thumbnail_url?: string;
-  status: 'draft' | 'published';
+  thumbnail_url?: string | null;
+  status: string | null;
   created_at: string;
+  updated_at: string;
 }
 
 const AdminVideos = () => {
