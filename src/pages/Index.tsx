@@ -8,8 +8,6 @@ import PopularTopics from "@/components/PopularTopics";
 import AboutFergando from "@/components/AboutFergando";
 import PodcastSection from "@/components/PodcastSection";
 import BlogSection from "@/components/BlogSection";
-import VideosSection from "@/components/VideosSection";
-import MarchSection from "@/components/MarchSection";
 import SubscribeSection from "@/components/SubscribeSection";
 import FergandoFooter from "@/components/FergandoFooter";
 import LoadingAnimation from "@/components/LoadingAnimation";
@@ -49,12 +47,6 @@ const Index = () => {
       </section>
       <section id="blog">
         <BlogSection />
-      </section>
-      <section id="videos">
-        <VideosSection />
-      </section>
-      <section id="march">
-        <MarchSection />
       </section>
       <section id="about">
         <AboutFergando />
