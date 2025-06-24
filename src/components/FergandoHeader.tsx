@@ -18,6 +18,7 @@ const FergandoHeader = () => {
     { name: "Videos", section: "videos" },
     { name: "March", section: "march" },
     { name: "About", section: "about" },
+    { name: "Logo", section: "logo" },
   ];
 
   return (
@@ -29,6 +30,11 @@ const FergandoHeader = () => {
               onClick={() => scrollToSection('home')}
               className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
             >
+              <img 
+                src="/lovable-uploads/0a31f09d-197f-49f7-b17f-618a0bbd02fd.png" 
+                alt="Fergando Logo" 
+                className="h-8 w-auto"
+              />
               <h1 className="text-2xl font-bold text-white" style={{ fontFamily: 'edo SZ, serif' }}>
                 Fergando
               </h1>

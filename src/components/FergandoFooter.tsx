@@ -3,12 +3,24 @@ import { Youtube, Instagram, Music } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const FergandoFooter = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-black border-t border-gray-800">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
+              <img 
+                src="/lovable-uploads/0a31f09d-197f-49f7-b17f-618a0bbd02fd.png" 
+                alt="Fergando Logo" 
+                className="h-6 w-auto"
+              />
               <h2 className="text-xl font-bold text-white" style={{ fontFamily: 'edo SZ, serif' }}>
                 Fergando
               </h2>
@@ -38,6 +50,7 @@ const FergandoFooter = () => {
               <li><Link to="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link></li>
               <li><Link to="/videos" className="text-gray-400 hover:text-white transition-colors">Videos</Link></li>
               <li><Link to="/clothes" className="text-gray-400 hover:text-white transition-colors">Clothes</Link></li>
+              <li><button onClick={() => scrollToSection('logo')} className="text-gray-400 hover:text-white transition-colors">Our Logo</button></li>
             </ul>
           </div>
           
