@@ -1,5 +1,5 @@
 
-import { Menu, Headphones } from "lucide-react";
+import { Menu, Youtube } from "lucide-react";
 
 const FergandoHeader = () => {
   const scrollToSection = (sectionId: string) => {
@@ -8,6 +8,8 @@ const FergandoHeader = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const youtubeUrl = "https://www.youtube.com/@YourChannelName"; // Replace with actual YouTube channel URL
 
   const navItems = [
     { name: "Home", section: "home" },
@@ -47,13 +49,24 @@ const FergandoHeader = () => {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <button 
-              onClick={() => scrollToSection('podcast')}
+            <a 
+              href={youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 text-gray-300 hover:text-red-500 transition-colors"
+              aria-label="Visit YouTube Channel"
+            >
+              <Youtube className="h-6 w-6" />
+            </a>
+            <a 
+              href={youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-black border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300 font-medium flex items-center space-x-2"
             >
-              <Headphones className="h-4 w-4" />
-              <span>Listen Now</span>
-            </button>
+              <Youtube className="h-4 w-4" />
+              <span>Visit Now</span>
+            </a>
             <button className="lg:hidden p-2 text-gray-300 hover:text-white transition-colors">
               <Menu className="h-6 w-6" />
             </button>
