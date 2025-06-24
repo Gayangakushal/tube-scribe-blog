@@ -1,60 +1,49 @@
 
-import { useState, useEffect } from "react";
 import { Calendar, Play, Mic, FileText } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 
-interface Post {
-  id: string;
-  title: string;
-  description: string;
-  post_type: string;
-  created_at: string;
-}
+// Mock data for latest content
+const mockPosts = [
+  {
+    id: "1",
+    title: "The Haunted Temple of Kataragama",
+    description: "Deep dive into one of Sri Lanka's most spiritually charged locations",
+    post_type: "blog",
+    created_at: "2024-12-20T00:00:00Z"
+  },
+  {
+    id: "2",
+    title: "Galle Fort Investigation",
+    description: "Exploring colonial era spirits in this historic location",
+    post_type: "video",
+    created_at: "2024-12-18T00:00:00Z"
+  }
+];
 
-interface Podcast {
-  id: string;
-  title: string;
-  description: string;
-  language: string;
-  created_at: string;
-}
+const mockPodcasts = [
+  {
+    id: "1",
+    title: "Voices from Beyond",
+    description: "EVP evidence from recent investigations",
+    language: "English",
+    created_at: "2024-12-15T00:00:00Z"
+  },
+  {
+    id: "2",
+    title: "Ancient Mysteries",
+    description: "Unexplained phenomena in ancient sites",
+    language: "Sinhala",
+    created_at: "2024-12-12T00:00:00Z"
+  }
+];
 
 const LatestPosts = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [podcasts, setPodcasts] = useState<Podcast[]>([]);
-
-  useEffect(() => {
-    fetchLatestContent();
-  }, []);
-
-  const fetchLatestContent = async () => {
-    // Fetch latest posts
-    const { data: postsData } = await supabase
-      .from("posts")
-      .select("*")
-      .eq("status", "published")
-      .order("created_at", { ascending: false })
-      .limit(2);
-
-    // Fetch latest podcasts
-    const { data: podcastsData } = await supabase
-      .from("podcasts")
-      .select("*")
-      .eq("status", "published")
-      .order("created_at", { ascending: false })
-      .limit(2);
-
-    setPosts(postsData || []);
-    setPodcasts(podcastsData || []);
-  };
-
   const allContent = [
-    ...posts.map(post => ({
+    ...mockPosts.map(post => ({
       id: post.id,
       title: post.title,
       category: post.post_type === 'blog' ? 'Blog Post' : 'Video',
       type: post.post_type === 'blog' ? 'Blog' : 'Video',
-      excerpt: post.description || 'No description available',
+      excerpt: post.description,
       date: new Date(post.created_at).toLocaleDateString('en-US', { 
         month: 'short', 
         day: 'numeric', 
@@ -63,12 +52,12 @@ const LatestPosts = () => {
       language: 'English',
       icon: post.post_type === 'blog' ? FileText : Play
     })),
-    ...podcasts.map(podcast => ({
+    ...mockPodcasts.map(podcast => ({
       id: podcast.id,
       title: podcast.title,
       category: 'Podcast',
       type: 'Podcast',
-      excerpt: podcast.description || 'No description available',
+      excerpt: podcast.description,
       date: new Date(podcast.created_at).toLocaleDateString('en-US', { 
         month: 'short', 
         day: 'numeric', 
@@ -121,12 +110,6 @@ const LatestPosts = () => {
             </article>
           ))}
         </div>
-        
-        {allContent.length === 0 && (
-          <div className="text-center text-gray-400">
-            <p>No content available yet. Check back soon!</p>
-          </div>
-        )}
       </div>
     </section>
   );

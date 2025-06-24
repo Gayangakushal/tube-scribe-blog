@@ -1,10 +1,9 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import FergandoHeader from "@/components/FergandoHeader";
 import FergandoFooter from "@/components/FergandoFooter";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 
 interface ClothingItem {
   id: string;
@@ -14,25 +13,26 @@ interface ClothingItem {
   image_url?: string;
 }
 
+// Mock data for clothing items
+const mockClothes: ClothingItem[] = [
+  {
+    id: "1",
+    name: "Paranormal Investigator T-Shirt",
+    description: "High-quality black cotton t-shirt with ghost hunter design",
+    price: 25.99,
+    image_url: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    id: "2",
+    name: "Ghost Hunter Hoodie",
+    description: "Comfortable hoodie perfect for night investigations",
+    price: 45.99,
+    image_url: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+  }
+];
+
 const Clothes = () => {
-  const [clothes, setClothes] = useState<ClothingItem[]>([]);
   const whatsappNumber = "+1234567890"; // Replace with actual WhatsApp number
-
-  useEffect(() => {
-    fetchClothes();
-  }, []);
-
-  const fetchClothes = async () => {
-    const { data, error } = await supabase
-      .from("clothes")
-      .select("*")
-      .eq("status", "published")
-      .order("created_at", { ascending: false });
-
-    if (!error && data) {
-      setClothes(data);
-    }
-  };
 
   const handleWhatsAppContact = (itemName: string, price: number) => {
     const message = `Hi! I'm interested in purchasing the ${itemName} for $${price}. Can you provide more details?`;
@@ -54,7 +54,7 @@ const Clothes = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {clothes.map((item) => (
+          {mockClothes.map((item) => (
             <div 
               key={item.id} 
               className="bg-gray-900 rounded-lg overflow-hidden border border-gray-800 hover:border-gray-700 transition-all duration-300"
@@ -85,12 +85,6 @@ const Clothes = () => {
             </div>
           ))}
         </div>
-
-        {clothes.length === 0 && (
-          <div className="text-center text-gray-400">
-            <p>No clothing items available yet. Check back soon!</p>
-          </div>
-        )}
       </main>
 
       <FergandoFooter />
